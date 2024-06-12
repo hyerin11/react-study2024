@@ -1,6 +1,9 @@
-import logo from './logo.svg';
+
 import './App.css';
 import React from 'react';
+import Hello from './components/Hello'; //.js는 생략한다
+import Bye from './components/Bye';
+import Greet from './components/Greet';
 
 function App() {
 
@@ -18,20 +21,14 @@ function App() {
 
   const hello = '안녕!' 
   return (
-    <React.Fragment>
-      <div className="App">
+    <>
+    
+      <Bye />
+      <Hello />
+      <Bye />
+      <Greet />
 
-        <h1>{hello}</h1>
-        {$h2}
-
-        <div>
-          <input type="text" />
-          <label htmlFor=""></label>
-        </div>
-
-      </div>
-
-    </React.Fragment>
+    </>
   );
 }
 
