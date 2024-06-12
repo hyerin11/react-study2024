@@ -1,24 +1,34 @@
-
-
 import React from 'react';
 import './App.css';
-import ExpenseItem from './components/expenses/ExpenseItem';
+import ExpenseList from './components/expenses/ExpenseList';
+import Greet from './components/Greet';
 
+const App = () => {
 
+  // 서버에서 지출항목 JSON 배열을 응답받음
+  const expenses = [
+    {
+      title: '치킨먹음',
+      price: 30000,
+      date: new Date(2024, 6 - 1, 3)
+    },
+    {
+      title: '족발먹음',
+      price: 40000,
+      date: new Date(2024, 6 - 1, 7)
+    },
+    {
+      title: '헬스장등록',
+      price: 300000,
+      date: new Date(2024, 6 - 1, 12)
+    },
+  ];
 
-
-  //문자열을 넣을 때는 {}중괄호를 생략할 수 있으나, 그 밖의 다른 것들은 {}중괄호를 필수로 넣어줘야 한다
-
-    const App = () => {
-      return (
-        <>
-        <ExpenseItem title="치킨" price={8000} date={new Date(2024, 6, 3) }/>
-        <ExpenseItem title="피자" price={9000} date={new Date(2024, 6, 7) } />
-        <ExpenseItem title="햄버거" price={8000} date={new Date(2024, 6, 12) } />
-        </>
-      );
-    };
-  
-  
+  return (
+    <>
+      <ExpenseList expenses={expenses} />
+    </>
+  );
+};
 
 export default App;
