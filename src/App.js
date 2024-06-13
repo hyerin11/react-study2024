@@ -25,6 +25,7 @@ const App = () => {
     },
   ];
 
+
 //ExpenseFrom에게 내려보낼 함수
 const onAddExpense = (userInput) => {
   console.log('App.js가 내려보낸 함수 호출!');
@@ -33,6 +34,15 @@ const onAddExpense = (userInput) => {
   expenses.push(userInput);
   console.log(expenses);
 };
+
+
+//ExpenseFilter에게 내려보낼 함수=================
+// const onAdd = (userInput) => {
+//   console.timeLog('App.js가 내려보낸 함수이다');
+
+//   filter.push(userInput);
+//   console.log(filter);
+// }
 
   return (
     <>
