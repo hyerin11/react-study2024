@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import ExpenseItem from './ExpenseItem';
 import ExpenseFilter from './ExpenseFilter';
+import './ExpenseList.css';
 
 const ExpenseList = ({ expenses }) => {
 
@@ -14,26 +15,30 @@ const ExpenseList = ({ expenses }) => {
     setFilteredYear(filteredYear);
   };
 
-  // App.js에서 받은 expenses 배열을 <ExpenseItem> 배열로 변환하는 함수
-  // const convertToComponentArray = () => {
-  //   return expenses
-  //         .map(ex => <ExpenseItem title={ex.title} price={ex.price} date={ex.date} />);
-  // };
+  // 연도로 필터링한 배열
+  const filteredExpenses = expenses
+  .filter(ex => ex.date.getFullYear().toString() === filteredYear);
+
+  //지출데이터가 있을 때 보여주는 태그
+  const expenseContent = filteredExpenses
+  .map(({ title, price, date }) => (
+  <ExpenseItem
+    key={Math.random().toString()}
+    title={title}
+    price={price}
+    date={date}
+  />
+));
+
+  //지출데이터가 없을 때 보여주는 태그
+  const noContent = <p>지출 항복이 없습니다</p>
+
 
   return (
     <div className="expenses">
       <ExpenseFilter onChangeFilter={onFilterChange} />
 
-      {expenses
-        .filter(ex => ex.date.getFullYear().toString() === filteredYear)
-        .map((ex) => (
-        <ExpenseItem
-          key={Math.random().toString()} //실제 태그에는 안그려지고 내부적으로 여러개의 익스펜즈를 구분하기 위해 사용된다. 보통은 pk사용됨.
-          title={ex.title}
-          price={ex.price}
-          date={ex.date}
-        />
-      ))}
+      {filteredExpenses.length > 0 ? expenseContent : noContent}
     </div>
   );
 };
