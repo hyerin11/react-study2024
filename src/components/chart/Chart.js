@@ -11,12 +11,15 @@ const Chart = ({dataPoints}) => {
      * 그리고 각 chartBar에 (해당 월 지출 총액 / 연도지출 총액) 비율을 전달한다
      */
 
+
+    
+
   return (
     <div className="chart">
 
         {
             dataPoints
-                .map(dp => <ChartBar key={dp.label} label={dp.label} />)
+                .map((dp) => (<ChartBar key={dp.label} label={dp.label} />))
         }      
     </div>
   );
