@@ -19,9 +19,9 @@ import Button from '../UI/Button';
 */
 
 const emailReducer = (state, action) => {
-  console.log('email reducer call!!');
-  console.log('state: ', state);  // 변경 전 상태객체
-  console.log('action: ', action); // 지금 상태변경이 일어난 객체
+  // console.log('email reducer call!!');
+  // console.log('state: ', state);  // 변경 전 상태객체
+  // console.log('action: ', action); // 지금 상태변경이 일어난 객체
 
   if (action.type === 'USER_INPUT') {
     return { 
@@ -32,6 +32,21 @@ const emailReducer = (state, action) => {
     return { 
       inputValue: state.inputValue,
       isVaild: state.inputValue.includes('@') 
+    };
+  }
+};
+
+const passwordReducer = (state, action) => {
+
+  if (action.type === 'USER_INPUT') {
+    return { 
+      inputValue: action.val,
+      isVaild: action.val.trim().length > 6
+    };
+  } else if (action.type === 'VALIDATE') {
+    return { 
+      inputValue: state.inputValue,
+      isVaild: state.inputValue.trim().length > 6
     };
   }
 };
@@ -52,12 +67,12 @@ const Login = ({ onLogin }) => {
     isValid: null,
   });
   // console.log('abc: ', abc);
-  console.log('변경 후 이메일상태: ', emailState);
+  // console.log('변경 후 이메일상태: ', emailState);
 
-  // 사용자가 입력한 패스워드를 상태관리
-  const [enteredPassword, setEnteredPassword] = useState('');
-  // 패스워드 입력값이 정상인지 유무 확인
-  const [passwordIsValid, setPasswordIsValid] = useState();
+  const [passwordState, dispatchPassword] = useReducer(passwordReducer, {
+    inputValue: '',
+    isValid: null,
+  });
 
   // 이메일, 패스워드가 둘 다 정상인지 확인
   const [formIsValid, setFormIsValid] = useState(false);
@@ -77,7 +92,10 @@ const Login = ({ onLogin }) => {
   };
 
   const passwordChangeHandler = (e) => {
-    setEnteredPassword(e.target.value);
+    dispatchPassword({
+      type: 'USER_INPUT',
+      val: e.target.value
+    });
   };
 
   const validateEmailHandler = () => {
@@ -88,21 +106,27 @@ const Login = ({ onLogin }) => {
   };
 
   const validatePasswordHandler = () => {
-    setPasswordIsValid(enteredPassword.trim().length > 6);
+    dispatchPassword({
+      type: 'VALIDATE'
+    });
   };
 
   // 로그인 버튼을 눌렀을 때 이벤트 핸들러
   const submitHandler = (e) => {
     e.preventDefault();
     // App.js에서 받은 로그인핸들러 호출
-    onLogin(emailState.inputValue, enteredPassword);
+    onLogin(emailState.inputValue, passwordState.inputValue);
   };
+
+  // emailState와 passwordState에서 isValid 추출
+  const { isVaild: emailIsValid } = emailState;
+  const { isVaild: passwordIsValid } = passwordState;
 
   useEffect(() => {
     const timer = setTimeout(() => {
       console.log('useEffect call in Login.js');
       setFormIsValid(
-        enteredPassword.trim().length > 6 && emailState.isVaild
+        emailIsValid && passwordIsValid
       );
     }, 1000);
 
@@ -111,7 +135,7 @@ const Login = ({ onLogin }) => {
       // console.log('cleanup: ', enteredEmail);
       clearTimeout(timer);
     };
-  });
+  }, [emailIsValid, passwordIsValid]);
 
   // console.log('render: ', enteredEmail);
 
@@ -120,7 +144,7 @@ const Login = ({ onLogin }) => {
       <form onSubmit={submitHandler}>
         <div
           className={`${styles.control} ${
-            emailState.isVaild === false ? styles.invalid : ''
+            !emailIsValid ? styles.invalid : ''
           }`}
         >
           <label htmlFor="email">E-Mail</label>
@@ -134,14 +158,14 @@ const Login = ({ onLogin }) => {
         </div>
         <div
           className={`${styles.control} ${
-            passwordIsValid === false ? styles.invalid : ''
+            !passwordIsValid ? styles.invalid : ''
           }`}
         >
           <label htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
-            value={enteredPassword}
+            value={passwordState.inputValue}
             onChange={passwordChangeHandler}
             onBlur={validatePasswordHandler}
           />
