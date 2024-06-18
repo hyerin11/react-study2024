@@ -40,8 +40,10 @@ const Login = ({ onLogin }) => {
     setPasswordIsValid(enteredPassword.trim().length > 6);
   };
 
+  // 로그인 버튼을 눌렀을 때 이벤트 핸들러
   const submitHandler = (e) => {
     e.preventDefault();
+    //App.js에서 호출받아옴
     onLogin(enteredEmail, enteredPassword);
   };
 
@@ -87,7 +89,7 @@ const Login = ({ onLogin }) => {
             Login
           </Button>
         </div>
-        
+
       </form>
     </Card>
   );
