@@ -47,9 +47,13 @@ import styled from 'styled-components';
 
 // `;
 
-const Button = ({ type, onClick, children}) => {
+const Button = ({ type, onClick, className, disabled, children}) => {
   return (
-    <button type={type} className={styles.button} onClick={onClick}>
+    <button type={type || 'button'}
+    className={`${styles.button} ${className}`}
+    onClick={onClick}
+    disabled={disabled}
+    >
       {children}
     </button>
   );

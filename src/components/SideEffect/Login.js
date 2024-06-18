@@ -5,10 +5,15 @@ import styles from './Login.module.css';
 import Button from '../UI/Button';
 
 const Login = ({ onLogin }) => {
+  // 사용자가 입력한 이메일 상태관리
   const [enteredEmail, setEnteredEmail] = useState('');
+  // 이메일 입력값이 정상인지 유무 확인
   const [emailIsValid, setEmailIsValid] = useState();
+  // 사용자가 입력한 비밀번호 상태관리
   const [enteredPassword, setEnteredPassword] = useState('');
+  // 패스워드 입력값이 정상인지 유무 확인
   const [passwordIsValid, setPasswordIsValid] = useState();
+  // 이메일, 패스워드 둘 다 정상인지 확인
   const [formIsValid, setFormIsValid] = useState(false);
 
   const emailChangeHandler = (e) => {
@@ -54,7 +59,9 @@ const Login = ({ onLogin }) => {
             id="email"
             value={enteredEmail}
             onChange={emailChangeHandler}
+            // 포커스를 잃었을 때.(마우스가 떠났을 때 검사를 함)
             onBlur={validateEmailHandler}
+
           />
         </div>
         <div
@@ -71,11 +78,16 @@ const Login = ({ onLogin }) => {
             onBlur={validatePasswordHandler}
           />
         </div>
+
         <div className={styles.actions}>
-          <Button type="submit" className={styles.btn} disabled={!formIsValid}>
+          <Button
+          type="submit"
+          className={styles.btn}
+          disabled={!formIsValid}>
             Login
           </Button>
         </div>
+        
       </form>
     </Card>
   );
