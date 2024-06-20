@@ -19,7 +19,7 @@ const TodoInput = () => {
             placeholder='할 일을 입력 후, 엔터를 누르세요!'
           />
         </form>
-      </div>}
+      </div>
 
       <button className={`insert-btn ${open? 'open' : undefined}`} onClick={onToggle}>
         <MdAdd/>

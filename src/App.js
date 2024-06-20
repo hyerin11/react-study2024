@@ -10,6 +10,9 @@ import TodoTemplate from './components/Todo/TodoTemplate';
 const App = () => {
 
   return <TodoTemplate />;
+
 };
+
+
 
 export default App;
