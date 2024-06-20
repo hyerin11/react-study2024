@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 
-const ResultModalComponent = ({ result, targetTime}, ref) => {
+const ResultModalComponent = ({result, targetTime}, ref) => {
 
   return (
     <dialog ref={ref} className="result-modal">
@@ -14,9 +14,8 @@ const ResultModalComponent = ({ result, targetTime}, ref) => {
   );
 };
 
-//forwardRef는 콜백으로 전달된 컴포넌트에 첫번째 파라미터로 props를 전달하고
-//두번째 파라미터에는 부모에게 받은 ref를 전달한다.
-
+// forwardRef는 콜백으로 전달된 컴포넌트에 첫번째 파라미터로 props를 전달하고
+// 두번째 파라미터에는 부모에게 받은 ref를 전달한다.
 const ResultModal = forwardRef(ResultModalComponent);
 
 export default ResultModal;
