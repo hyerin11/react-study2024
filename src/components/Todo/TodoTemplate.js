@@ -29,14 +29,19 @@ const TodoTemplate = () => {
       done: false
     };
 
-    //console.log('new: ', newTodo);
+    // console.log('new: ', newTodo);
+    
     setTodoList(prevTodoList => [...prevTodoList, newTodo]);
+  };
+
+  const removeTodo = id => {
+    setTodoList(todoList.filter(todo => todo.id !== id));
   };
 
   return (
     <div className='TodoTemplate'>
       <TodoHeader />
-      <TodoMain todos={todoList} />
+      <TodoMain todos={todoList} onRemove={removeTodo} />
       <TodoInput onAdd={addTodo} />
     </div>
   );
