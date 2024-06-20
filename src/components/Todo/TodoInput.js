@@ -17,6 +17,9 @@ const TodoInput = ({ onAdd }) => {
   const submitHandler = e => {
     e.preventDefault();
     onAdd($textInput.current.value);
+    // form이 제출되면 입력창 비우기
+    $textInput.current.value = '';
+    setOpen(false);
   };
 
   return (
