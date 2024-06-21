@@ -22,10 +22,14 @@ const cartReducer = (state, action) => {
 
 const CartProvider = ({ children }) => {
 
+  const addItemHandler = item => { 
+    console.log('장바구니에 데이터 추가 - ', item);
+  };
+
   // Provider가 실제로 관리할 상태들의 구체적인 내용들
   const cartContext = {
     cartItems: [], // 상태값
-    addItem: item => {}, // 상태를 업데이트하는 함수
+    addItem: addItemHandler, // 상태를 업데이트하는 함수
     removeItem: id => {}, // 상태를 업데이트하는 함수
   };
 
