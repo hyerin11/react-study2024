@@ -30,3 +30,14 @@ $my-orange: #fbaa30;
     transform: rotateZ(-5deg) translateY(-4rem) translateX(-1rem);
   }
 }
+
+
+.fruit{
+  width:100px;
+  .banana{
+    width: 50%;
+    .sweet{
+      width: 50%;
+    }
+  }
+}
