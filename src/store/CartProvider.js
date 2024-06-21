@@ -15,14 +15,12 @@ const cartReducer = (state, action) => {
     // 상태 업데이트 코드
     return null; // 새로운 상태
   } else if (action.type === 'REMOVE') { // 장바구니 제거
-
     return null; // 새로운 상태
   } 
   return defaultState; // 새로운 상태
 };
 
 const CartProvider = ({ children }) => {
-
 
   // Provider가 실제로 관리할 상태들의 구체적인 내용들
   const cartContext = {

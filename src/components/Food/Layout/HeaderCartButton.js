@@ -1,13 +1,13 @@
 import React from 'react';
-import CartIcon from './Carticon';
+import CartIcon from './CartIcon';
 import styles from './HeaderCartButton.module.scss';
 
-const HeaderCartButton = () => {
+const HeaderCartButton = ({ onShow }) => {
 
-    const {button, icon, badge} = styles;
+  const {button, icon, badge} = styles;
 
   return (
-    <button className={button}>
+    <button className={button} onClick={onShow}>
       <span className={icon}>
         <CartIcon />
       </span>
@@ -17,4 +17,4 @@ const HeaderCartButton = () => {
   );
 };
 
-export default HeaderCartButton
+export default HeaderCartButton;
