@@ -54,6 +54,7 @@ const CartProvider = ({ children }) => {
     });
   };
 
+
   // Provider가 실제로 관리할 상태들의 구체적인 내용들
   const cartContext = {
     cartItems: cartState.items, // 상태값
@@ -61,6 +62,7 @@ const CartProvider = ({ children }) => {
     addItem: addItemHandler, // 상태를 업데이트하는 함수
     removeItem: id => {}, // 상태를 업데이트하는 함수
   };
+
 
   return <CartContext.Provider value={cartContext}>{children}</CartContext.Provider>;
 };
