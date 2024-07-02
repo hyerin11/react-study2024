@@ -2,11 +2,22 @@ import React from 'react';
 import Products from './components/RouteExample/pages/Products';
 import Home from './components/RouteExample/pages/Home';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import RootLayout from './components/RouteExample/layout/RootLayout';
 
 //라우터 설정
 const router = createBrowserRouter([
-  { path: '/', element: <Home /> },
-  { path: '/products', element: <Products /> }
+
+//중첩 라우터
+  {
+    path: '/',
+    element: <RootLayout />,
+    children: [
+      { path: '/', element: <Home /> },
+      { path: '/products', element: <Products /> }
+    ]
+  }
+
+ 
 ]);
 
 const App = () => {
