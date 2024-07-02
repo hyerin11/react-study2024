@@ -10,12 +10,12 @@ const router = createBrowserRouter([
 
 //중첩 라우터
   {
-    path: '/',
+    path: '/base',
     element: <RootLayout />,
     errorElement: <ErrorPage />,
     children: [
-      { path: '/', element: <Home /> },
-      { path: '/products', element: <Products /> }
+      { path: '', element: <Home /> },
+      { path: 'products', element: <Products /> }
     ]
   }
 
