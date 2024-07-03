@@ -6,6 +6,7 @@ import ErrorPage from './components/RouteExample/pages/ErrorPage';
 import Events from './components/RouteExample/pages/Events';
 import EventDetail from './components/RouteExample/pages/EventDetail';
 import EventLayout from './components/RouteExample/layout/EventLayout';
+import NewEvent from './components/RouteExample/pages/NewEvent';
 
 // 라우터 설정
 const router = createBrowserRouter([
@@ -14,7 +15,8 @@ const router = createBrowserRouter([
     element: <RootLayout />,
     errorElement: <ErrorPage />,
     children: [
-      { index: true, element: <Home /> },
+      { index: true,
+        element: <Home /> },
       {
         path: 'events',
         element: <EventLayout />,
@@ -31,10 +33,12 @@ const router = createBrowserRouter([
 
               // loader가 리턴한 데이터는 loader를 선언한 컴포넌트와 그 하위 컴포넌트에서
               // 언제든 불러서 사용할 수 있다.
+              console.log(jsonData);
               return jsonData;
             }
           },
           { path: ':eventId', element: <EventDetail /> },
+          { path: 'new', element: <NewEvent /> }
         ]
       },
     ]
