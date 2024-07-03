@@ -6,7 +6,11 @@ const Events = () => {
 
   // loader가 리턴한 데이터 받아오기
   const eventList = useLoaderData();
-  console.log(eventList);
+  //console.log(eventList);
+
+
+  console.log('event page rendering!')
+
 
   return (
     <>
@@ -20,6 +24,7 @@ export default Events;
 
 
 //loader를 app.js로부터 아웃소싱
+console.log('loader call!'); //렌더링 페이지보다 로더가 먼저 호출된다
 
 export const loader = async() => {
     // 이 페이지가 열릴때 자동으로 트리거되어 호출되는 함수
