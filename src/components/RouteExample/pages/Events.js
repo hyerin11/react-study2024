@@ -6,7 +6,7 @@ const Events = () => {
 
   // loader가 리턴한 데이터 받아오기
   const eventList = useLoaderData();
-  //console.log(eventList);
+  console.log(eventList);
 
 
   console.log('event page rendering!')
@@ -38,5 +38,22 @@ export const loader = async() => {
     //console.log(jsonData);
 
     //loader에서 fetch의 결과를 바로 리턴하면 알아서 json을 추출해준다.(loader에서만 가능)
-    return response;
+    
+    console.log(response.status);
+
+    if(!response.ok){
+    
+        const errorText = await response.text();
+
+      throw new Response(
+        JSON.stringify({message: errorText}),
+        {
+            status: response.status
+        }
+    ); 
+      //return response; //ok아닐 때 error message
+    }
+    
+    
+    return response; //ok일 때 events[]배열
 };

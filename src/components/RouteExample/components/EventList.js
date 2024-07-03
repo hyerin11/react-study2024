@@ -6,7 +6,7 @@ const EventList = ({ eventList }) => {
 
   // loader데이터는 loader를 선언한 페이지 밑 하위 컴포넌트까지도 어디든 사용 가능하다
   const data = useLoaderData();
-  console.log('loader data: ', data);
+  //console.log('loader data: ', data);
 
   const {events, list, item, content} = styles;
 
