@@ -5,6 +5,7 @@ import RootLayout from './components/RouteExample/layout/RootLayout';
 import ErrorPage from './components/RouteExample/pages/ErrorPage';
 import Events from './components/RouteExample/pages/Events';
 import EventDetail from './components/RouteExample/pages/EventDetail';
+import EventLayout from './components/RouteExample/layout/EventLayout';
 
 // 라우터 설정
 const router = createBrowserRouter([
@@ -18,6 +19,7 @@ const router = createBrowserRouter([
 
       {
         path: 'events',
+        element: <EventLayout />,
         children: [
           { path: '', element: <Events /> },
           { path: ':eventId', element: <EventDetail /> },

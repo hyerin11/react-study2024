@@ -22,7 +22,6 @@ const Events = () => {
   return (
     <>
       <h1>Events Page</h1>
-      <EventsNavigation />
       <EventList eventList={eventList} />
     </>
   );
