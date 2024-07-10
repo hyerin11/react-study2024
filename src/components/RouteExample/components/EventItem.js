@@ -21,7 +21,7 @@ const EventItem = ({ event }) => {
 
 
   const deleteHandler =  (e) => {
-
+    if (!window.confirm('정말 삭제하시겠습니까?')) return;
     // action을 트리거
     submit(null, { method: 'DELETE' });
     /*
